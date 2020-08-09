@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let xkc = {
+      age: 18,
+      name: 'xkc',
+      habby: ['睡觉','听歌'],
+      address: {
+        city: '中国'
+      }
+    }
+    function deepCopy(obj) {
+      if (typeof obj !== 'object' || obj == null) {
+        return obj
+      }
+      var res 
+      if (obj instanceof Array) {
+        res = []
+      } else {
+        res = {}
+      }
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          res[key] = deepCopy(obj[key])
+        }
+      }
+      return res
+    }
+    var xkc1 = deepCopy(xkc)
+    console.log(xkc1)
+    xkc1.name = 'xkcnb'
+    console.log(xkc1)
+    console.log(xkc)
+  </script>
+</body>
+</html>

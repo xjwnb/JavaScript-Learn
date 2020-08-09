@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = [3, 6, 6, 8, 2, 7, 7, 6];
+      function quc(arr) {
+        var arrObject = {};
+        var res = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (!arrObject[arr[i]]) {
+            arrObject[arr[i]] = 1;
+            res.push(arr[i]);
+          }
+        }
+        return res;
+      }
+      console.log(quc(a));
+
+      function unique(arr) {
+        var res = [];
+        for (var i = 0; i < arr.length; i++) {
+          for (var j = i + 1; j < arr.length; j++) {
+            if (arr[i] == arr[j]) {
+              ++i;
+            }
+          }
+          res.push(arr[i]);
+        }
+        return res;
+      }
+      var arr = [1, 2, 2, 3, 5, 3, 6, 5];
+      var res = unique(arr);
+      console.log(res);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 父类
+    function Person(name) {
+      this.name = name
+    }
+    Person.prototype.sayName = function() {
+      console.log(this.name)
+    }
+    Person.habby = 'code'
+    var person = new Person('xkc')
+    person.sayName()
+
+    // 原型链继承
+    function Child1(name) {
+      this.name = name
+    }
+    Child1.prototype = new Person()
+    var child1 = new Child1('xkc1')
+    child1.sayName()
+
+    // 构造函数继承
+    function Child2() {
+      Person.call(this, 'xkc2')
+    } 
+    var child2 = new Child2()
+    // child2.sayName()   // 报错构造函数继承无法继承父类原型中的方法和属性
+
+    // 组合继承
+    function Child3() {
+      Person.call(this, 'xkc3')
+    }
+    Child3.prototype = new Person()
+    var child3 = new Child3('xkc3')
+    child3.sayName()
+    
+    // 寄生式继承
+    function object(obj) {
+      function f() {}
+      f.prototype = obj
+      return new f()
+    }
+    
+    function subobj(obj) {
+      var sub = object(obj)
+      sub.name = 'xkc4'
+      return sub
+    }
+    var sub = new Person()
+    var sub1 = subobj(sub)
+    sub1.sayName()
+  </script>
+</body>
+</html>

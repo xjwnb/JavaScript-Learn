@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css"
+      type="text/css"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+      .map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+    <title>openlayers案例</title>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      // 先 new 一个向量层
+      var layer = new ol.layer.Vector({
+        source: new ol.source.Vector(),
+      });
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM(),
+          }),
+          // 把层放进 layers 数组中
+          layer,
+        ],
+        target: "map",
+        view: new ol.View({
+          projection: "EPSG:4326",
+          center: [116.3, 39.9],
+          zoom: 4,
+        }),
+      });
+
+      // 创建和绘制一个 canvas 图案
+      var canvas = document.createElement("canvas");
+      canvas.width = 20;
+      canvas.height = 20;
+      var context = canvas.getContext("2d");
+      context.strokeStyle = "red";
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(20, 20);
+      context.lineTo(20, 0);
+      context.lineTo(0, 20);
+      context.lineTo(0, 0);
+      context.stroke();
+
+      // new style 样式
+      var style = new ol.style.Style({
+        image: new ol.style.Icon({
+          img: canvas,
+          imgSize: [canvas.width, canvas.height],
+          rotation: (90 * Math.PI) / 180,
+        }),
+      });
+
+      // new 一个功能，里面有一个点（北京的坐标点）
+      var shape = new ol.Feature({
+        geometry: new ol.geom.Point([116.3, 39.9]),
+      });
+
+      shape.setId("1");
+      shape.setProperties({
+        id: "1",
+        name: "经纬度",
+        location: "[116.3, 39.9]",
+      });
+
+      // 给这个点赋值上前面 new 的样式
+      shape.setStyle(style);
+      // 最后把加了样式之后的点（北京的坐标点）添加给 layer 层
+      layer.getSource().addFeature(shape);
+      
+      map.on("click", function (evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+          return feature;
+        });
+        if (feature) {
+          var coordinates = feature.getGeometry().getCoordinates();
+          var attr = feature.getProperties();
+          var id = feature.getId();
+          if (!popover) {
+            popover = new ole.Popover({
+              id: "11",
+              showCloser: false,
+              showMarkFeature: false,
+              showMinimize: false,
+              autoPan: true,
+              offset: [0, -50],
+            });
+            map.addOverlay(popover);
+          }
+          var content =
+            "<ul>" +
+            "<li>id: " +
+            attr.id +
+            "</li>" +
+            "<li>name:" +
+            attr.name +
+            "</li>" +
+            "</ul>";
+          popover.show(coordinates, content);
+        } else {
+          if (popover) popover.hide();
+        }
+      });
+    </script>
+  </body>
+</html>
