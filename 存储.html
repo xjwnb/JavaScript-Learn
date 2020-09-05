@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-05 12:06:47
+ * @LastEditTime: 2020-09-05 13:19:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \小卡车的博客\3.排序算法\存储.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // localStorage 属性
+    // localStorage 用于长久保存整个网站的数据，保存的数据没有过期时间，除非手动删除。
+    // 存储
+    localStorage.setItem("name", "小卡车");
+    // 通过键名获取内容
+    console.log(localStorage.getItem("name"));
+    // 清除对应的localStorage
+    localStorage.removeItem("name");
+    console.log(localStorage.getItem("name"));
+    
+    // sessionStorage 属性
+    // 用于临时保存同一窗口的数据，在关闭窗口后将会删除数据
+    // 存储
+    sessionStorage.setItem("name", "小卡车");
+    // 通过键名获取内容
+    console.log(sessionStorage.getItem("name"));
+    // 删除
+    sessionStorage.removeItem("name");
+    console.log(sessionStorage.getItem("name"));
+
+  </script>
+</body>
+</html>
