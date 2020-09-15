@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-15 13:20:37
- * @LastEditTime: 2020-09-15 13:46:57
+ * @LastEditTime: 2020-09-15 14:46:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Bom.js
@@ -43,5 +43,20 @@ window.onload = function () {
   console.log("窗口的高度", pageHeight);
 
   // 导航和打开窗口
-  window.open("https://www.baidu.com", "xkc", "height=600, width=600, top=10,left=10");
+  var baidu = window.open("https://www.baidu.com", "xkc", "height=600, width=600, top=10,left=10");
+  setTimeout(() => {
+    baidu.close();
+    console.log(baidu.closed);
+    console.log(baidu.opener);
+  }, 3000);
+
+  // 
+  if (confirm("Are you OK?")) {
+    console.log('OK');
+  } else {
+    console.log('No');
+  }
+
+  var result = prompt("Are you OK?", "");
+  console.log(result);
 };
