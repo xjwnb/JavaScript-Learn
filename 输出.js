@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-08 10:57:22
- * @LastEditTime: 2020-09-14 18:38:01
+ * @LastEditTime: 2020-09-15 12:55:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\输出.js
@@ -218,10 +218,65 @@ function SubType3(name, age, habby) {
   this.habby = habby;
 }
 SubType3.prototype = new SuperType3();
+SubType3.prototype.push = function (habby) {
+  this.habby.push(habby);
+};
 SubType3.prototype.msg = function () {
   console.log(this.name, this.age, this.habby);
 };
 var sub4 = new SubType3("xkc", 20, ["LOL"]);
 console.log(sub4.name);
 console.log(sub4.age);
+sub4.push("率土之滨");
 sub4.msg();
+var sub5 = new SubType3("xkc", 20, ["LOL"]);
+console.log(sub5.name);
+console.log(sub5.age);
+sub5.msg();
+
+// 闭包
+console.log('-------------------------');
+function createFunction1() {
+  var result = new Array();
+  for (var i = 0; i < 10; i++) {
+    result[i] = (function (num) {
+      return num; /* function () { 
+        console.log(num);
+      }; */
+    })(i);
+  }
+  return result;
+}
+console.log(createFunction1()[2]);
+
+// this
+console.log('-------------------------');
+var pro1 = 'The window';
+var ob1 = {
+  pro1: 'The object',
+  getPro: function() {
+    console.log(this.pro1);
+    return function() {
+      console.log(this)
+      console.log(pro1);
+      return pro1;
+    }
+  }
+}
+ob1.getPro();
+ob1.getPro()();
+console.log(ob1.getPro()());
+
+// 
+console.log('-------------------------');
+function test1(num) {
+  for (var i = 0; i < num; i++) {
+    (function(i) {
+      setTimeout(() => {
+        console.log(i);
+      }, 1000*i)
+    })(i);
+  }
+}
+test1(10);
+
