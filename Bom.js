@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-15 13:20:37
- * @LastEditTime: 2020-09-15 15:26:03
+ * @LastEditTime: 2020-09-15 21:30:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Bom.js
@@ -43,18 +43,22 @@ window.onload = function () {
   console.log("窗口的高度", pageHeight);
 
   // 导航和打开窗口
-  var baidu = window.open("https://www.baidu.com", "xkc", "height=600, width=600, top=10,left=10");
+  var baidu = window.open(
+    "https://www.baidu.com",
+    "xkc",
+    "height=600, width=600, top=10,left=10"
+  );
   setTimeout(() => {
     baidu.close();
     console.log(baidu.closed);
     console.log(baidu.opener);
   }, 3000);
 
-  // 
+  //
   if (confirm("Are you OK?")) {
-    console.log('OK');
+    console.log("OK");
   } else {
-    console.log('No');
+    console.log("No");
   }
 
   var result = prompt("Are you OK?", "");
@@ -63,4 +67,67 @@ window.onload = function () {
   // location
   console.log(window.location === document.location); // true
   console.log(window.location);
+
+  // 验证属性是否存在
+  function isHostMethod(object, property) {
+    var t = typeof object[property];
+    return (
+      t == "function" || !!(t == "object" && object[property]) || t == "unknown"
+    );
+  }
+  console.log(isHostMethod(document, "open"));
+  console.log(isHostMethod(history, "go"));
+  console.log(isHostMethod(window, "location"));
+  console.log(typeof window.location);
+
+  var hasDontEnumQuirk = (function () {
+    var o = {
+      toString: function () {},
+    };
+    for (var key in o) {
+      if (key === "toString") {
+        console.log("111");
+        return false;
+      }
+    }
+    console.log("222");
+    return true;
+  })();
+
+  // 
+  console.log(navigator);
+
+  // 
+  var o1 = {
+    ver: 0,
+    webkit: 0
+  }
+  var userAgent = navigator.userAgent;
+  if (/AppleWebKit\/(\S+)/.test(userAgent)) {
+    console.log('嘿嘿嘿');
+    o1.ver = RegExp["$1"];
+    o1.webkit = parseFloat(o1.ver);
+    console.log(o1);
+  }
+
+  var xkcDiv = document.getElementsByClassName('xkc')[0];
+  console.log(xkcDiv)
+  console.log('nodeType', xkcDiv.nodeType)
+  console.log('nodeValue', xkcDiv.nodeValue)
+  console.log('nodeName', xkcDiv.nodeName);
+  var xkcDiv1 = document.getElementsByClassName('xkcOne')[0];
+  console.log(xkcDiv1)
+  console.log('nodeType', xkcDiv1.nodeType)
+  console.log('nodeValue', xkcDiv1.nodeValue)
+  console.log('nodeName', xkcDiv1.nodeName);
+  var aDiv = document.getElementById('a');
+  console.log(aDiv)
+  console.log('nodeType', aDiv.nodeType)
+  console.log('nodeValue', aDiv.nodeValue)
+  console.log('nodeName', aDiv.nodeName);
+
+  var xk = document.getElementsByClassName('xkc')[0].childNodes[1];
+  console.log(xk)
+  console.log(xkcDiv.ownerDocument);
+  console.log(xkcDiv.hasChildNodes());
 };
