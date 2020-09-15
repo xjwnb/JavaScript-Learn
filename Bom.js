@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-15 13:20:37
- * @LastEditTime: 2020-09-15 14:46:40
+ * @LastEditTime: 2020-09-15 15:26:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Bom.js
@@ -59,4 +59,8 @@ window.onload = function () {
 
   var result = prompt("Are you OK?", "");
   console.log(result);
+
+  // location
+  console.log(window.location === document.location); // true
+  console.log(window.location);
 };
