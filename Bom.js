@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-15 13:20:37
- * @LastEditTime: 2020-09-15 21:30:02
+ * @LastEditTime: 2020-09-16 17:34:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Bom.js
@@ -130,4 +130,37 @@ window.onload = function () {
   console.log(xk)
   console.log(xkcDiv.ownerDocument);
   console.log(xkcDiv.hasChildNodes());
+
+  // document
+  console.log('document.URL', document.URL);
+  console.log('document.referrer', document.referrer)
+  console.log('document.domain', document.domain);
+
+  // attribute
+  console.log(document.getElementsByClassName("xkc")[0].attributes.getNamedItem("name").nodeValue);
+
+  var p = document.createElement('p');
+  p.innerText = "小卡车";
+  document.body.appendChild(p);
+  console.log(document.body);
+  var textNode = document.createTextNode("Hello world");
+  var ele = document.createElement("div");
+  ele.appendChild(textNode);
+  document.body.appendChild(ele);
+  textNode.appendData("!");
+  textNode.insertData(5, 'xkc');
+  console.log(xkcDiv.firstElementChild)
+
+  xkcDiv.classList.add('x1');
+
+  console.log('document.readyState', document.readyState);
+  console.log('document.charset',document.charset)
+
+  // replaceChild
+  var replaceDiv1 = document.createElement('div');
+  replaceDiv1.appendChild(document.createTextNode("replace"));
+  aDiv.parentNode.replaceChild(replaceDiv1, aDiv);
+
+  console.log(xkcDiv.children);
+  console.log(xkcDiv.childNodes)
 };
