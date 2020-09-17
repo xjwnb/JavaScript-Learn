@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-15 13:20:37
- * @LastEditTime: 2020-09-16 17:34:42
+ * @LastEditTime: 2020-09-16 20:56:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Bom.js
@@ -163,4 +163,13 @@ window.onload = function () {
 
   console.log(xkcDiv.children);
   console.log(xkcDiv.childNodes)
+
+  function Test1() {
+    with(document) {
+      console.log(document);
+      console.log(location);
+      console.log(body);
+    }
+  }
+  Test1();
 };

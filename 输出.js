@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-08 10:57:22
- * @LastEditTime: 2020-09-15 12:55:22
+ * @LastEditTime: 2020-09-16 20:39:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\输出.js
@@ -268,7 +268,7 @@ ob1.getPro()();
 console.log(ob1.getPro()());
 
 // 
-console.log('-------------------------');
+/* console.log('-------------------------');
 function test1(num) {
   for (var i = 0; i < num; i++) {
     (function(i) {
@@ -278,5 +278,9 @@ function test1(num) {
     })(i);
   }
 }
-test1(10);
+test1(10); */
 
+function Test1() {
+  console.log(arguments.callee);
+}
+Test1();
