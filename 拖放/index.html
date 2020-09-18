@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-18 18:30:26
+ * @LastEditTime: 2020-09-18 19:47:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \小卡车的博客\3.排序算法\拖放\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .drag {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+        display: inline-block;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drag"></div>
+    <script type="text/javascript">
+      document.documentElement.addEventListener("mousemove", function (event) {
+        var dragDiv = document.querySelector(".drag");
+        console.log(dragDiv);
+        dragDiv.style.left = event.clientX + "px";
+        dragDiv.style.top = event.clientY + "px";
+        console.log(dragDiv.style.left, dragDiv.style.top)
+      });
+
+      document.documentElement.onclick = function (e) {
+        console.log(e.target);
+      }
+    </script>
+  </body>
+</html>
