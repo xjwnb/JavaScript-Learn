@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-09-19 12:47:48
- * @LastEditTime: 2020-09-19 13:33:45
+ * @LastEditTime: 2020-09-19 13:42:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \小卡车的博客\3.排序算法\Cookie\SubCookieUtil.js
@@ -75,7 +75,7 @@ var SubCookieUtil = {
         cookieText += "; secure";
       }
     } else {
-      cookieText += '""; expires=' + new Date(0).toGMTString();
+      cookieText += "; expires=" + new Date(0).toGMTString();
     }
     document.cookie = cookieText;
   },
@@ -84,5 +84,17 @@ var SubCookieUtil = {
     var subcookies = this.getAll(name) || {};
     subcookies[subName] = value;
     this.setAll(name, subcookies, expires, path, domain, secure);
+  },
+  // 删除 subName
+  unset: function (name, subName, path, domain, secure) {
+    var subcookies = this.getAll(name);
+    if (subcookies) {
+      delete subcookies[subName];
+      this.setAll(name, subcookies, null, path, domain, secure);
+    }
+  },
+  // 删除整个cookie
+  unsetAll: function (name, path, domain, secure) {
+    this.setAll(name, null, new Date(0), path, domain, secure);
   },
 };
